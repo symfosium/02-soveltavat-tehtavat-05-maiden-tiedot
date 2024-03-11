@@ -33,10 +33,14 @@ function App() {
     useEffect(() => {
       if (filteredCountries.length === 1) {
         setSelectedCountry(filteredCountries[0]);
-      } else {
-        setSelectedCountry(null);
+        setSearchQuery('');
       }
     }, [filteredCountries]);  
+
+    const showCountry = (country) => {
+      setSelectedCountry(country);
+      setSearchQuery('');
+    };
 
   return (
     <div>
@@ -46,7 +50,7 @@ function App() {
         <input onChange={handleSearchChange} value={searchQuery} />
       </div>
       {filteredCountries.length > 0 && filteredCountries.length < 10 ? (
-        <Countries filteredCountries={filteredCountries} />
+        <Countries filteredCountries={filteredCountries} setCountry={showCountry}/>
       ) : (
         <p>{searchQuery ? 'Too many matches' : null}</p>
       )}

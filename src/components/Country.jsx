@@ -2,6 +2,7 @@
 
 const Country = ({country}) => {
    if (!country) return null;
+   
   return (
     <div>
       <h1>{country.name.common}</h1>
